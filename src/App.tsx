@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import EffectCard from './components/EffectCard'
 import { categories, effects } from './data/effects'
 import type { ControlValue, Settings } from './types'
@@ -15,6 +15,49 @@ export default function App() {
   const [mountKeys, setMountKeys] = useState<Record<string, number>>(() =>
     Object.fromEntries(effects.map((effect) => [effect.id, 0])),
   )
+  const [activeHash, setActiveHash] = useState(() =>
+    typeof window === 'undefined' ? '' : window.location.hash.slice(1),
+  )
+  const [highlightedId, setHighlightedId] = useState<string | null>(null)
+
+  useEffect(() => {
+    let highlightTimer = 0
+    const focusHash = () => {
+      const id = window.location.hash.slice(1)
+      setActiveHash(id)
+      if (!id) return
+      const target = document.getElementById(id)
+      if (!target) return
+
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        if (target.classList.contains('card')) {
+          setHighlightedId(id)
+          window.clearTimeout(highlightTimer)
+          highlightTimer = window.setTimeout(() => setHighlightedId(null), 2200)
+        } else {
+          setHighlightedId(null)
+        }
+      })
+
+      const tab = document.querySelector<HTMLElement>(`.effect-tab[data-id="${id}"]`)
+      const strip = tab?.parentElement
+      if (tab && strip) {
+        requestAnimationFrame(() => {
+          strip.scrollLeft =
+            tab.offsetLeft - strip.clientWidth / 2 + tab.clientWidth / 2
+        })
+      }
+    }
+
+    focusHash()
+    window.addEventListener('hashchange', focusHash)
+    return () => {
+      window.clearTimeout(highlightTimer)
+      setHighlightedId(null)
+      window.removeEventListener('hashchange', focusHash)
+    }
+  }, [])
 
   const counts = useMemo(() => {
     const map: Record<string, number> = {}
@@ -52,6 +95,7 @@ export default function App() {
             onSettingChange={(key, value) => update(captureEffect.id, key, value)}
             onReset={() => reset(captureEffect.id)}
             mountKey={mountKeys[captureEffect.id] ?? 0}
+            highlighted={highlightedId === captureEffect.id}
           />
         </div>
       </>
@@ -109,6 +153,21 @@ export default function App() {
               </a>
             ))}
           </div>
+          <div className="effect-tabs" aria-label="Effect quick links">
+            <div className="effect-tabs-inner">
+              {effects.map((effect) => (
+                <a
+                  className={`effect-tab ${activeHash === effect.id ? 'active' : ''}`}
+                  href={`#${effect.id}`}
+                  data-id={effect.id}
+                  key={effect.id}
+                >
+                  <span>{effect.index}</span>
+                  {effect.title}
+                </a>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <main>
@@ -132,6 +191,7 @@ export default function App() {
                       onSettingChange={(key, value) => update(effect.id, key, value)}
                       onReset={() => reset(effect.id)}
                       mountKey={mountKeys[effect.id] ?? 0}
+                      highlighted={highlightedId === effect.id}
                     />
                   ))}
                 </div>

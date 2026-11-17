@@ -23,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 0;
 }
 
 body {
@@ -247,9 +247,72 @@ a {
   font-size: 9px;
 }
 
+.effect-tabs {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.effect-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.effect-tabs-inner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  padding: 1px 0;
+}
+
+.effect-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  color: var(--dim);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.effect-tab span {
+  color: #4d5568;
+  font-size: 8.5px;
+}
+
+.effect-tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.effect-tab.active {
+  color: #cdd8ff;
+  border-color: rgba(124, 156, 255, 0.28);
+  background: rgba(124, 156, 255, 0.1);
+}
+
+.effect-tab.active span {
+  color: var(--accent);
+}
+
+.card.hash-target {
+  border-color: rgba(124, 156, 255, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(124, 156, 255, 0.28),
+    0 26px 90px -38px rgba(80, 110, 255, 0.55);
+}
+
 /* ---------- Category ---------- */
 .category {
   padding-top: 66px;
+  scroll-margin-top: 108px;
 }
 
 .category-head {
@@ -296,6 +359,7 @@ a {
 /* ---------- Card ---------- */
 .card {
   grid-column: span 6;
+  scroll-margin-top: 108px;
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);

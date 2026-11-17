@@ -9,15 +9,23 @@ interface Props {
   onSettingChange: (key: string, value: ControlValue) => void
   onReset: () => void
   mountKey: number
+  highlighted?: boolean
 }
 
-export default function EffectCard({ effect, settings, onSettingChange, onReset, mountKey }: Props) {
+export default function EffectCard({
+  effect,
+  settings,
+  onSettingChange,
+  onReset,
+  mountKey,
+  highlighted = false,
+}: Props) {
   const [controlsOpen, setControlsOpen] = useState(false)
   const { ref, inView } = useInView<HTMLDivElement>()
   const Component = effect.component
 
   return (
-    <article className={`card ${effect.wide ? 'wide' : ''}`} id={effect.id}>
+    <article className={`card ${effect.wide ? 'wide' : ''} ${highlighted ? 'hash-target' : ''}`} id={effect.id}>
       <header className="card-head">
         <div>
           <div className="card-title-row">
