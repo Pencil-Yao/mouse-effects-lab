@@ -1,0 +1,6 @@
+.fluid-cursor-canvas {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(124, 156, 255, 0.05), transparent 65%),
+    #05060a;
+  cursor: crosshair;
+}

@@ -1,0 +1,6 @@
+.click-burst-canvas {
+  background:
+    radial-gradient(circle at 50% 60%, rgba(180, 140, 255, 0.1), transparent 55%),
+    #06070a;
+  cursor: pointer;
+}

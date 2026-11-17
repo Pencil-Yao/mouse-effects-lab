@@ -1,0 +1,48 @@
+.image-trail-root {
+  --trail-size: 170px;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(124, 156, 255, 0.06), transparent 60%),
+    #06070a;
+}
+
+.image-trail-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: clamp(48px, 9vw, 96px);
+  line-height: 0.85;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+
+.image-trail-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--trail-size);
+  height: calc(var(--trail-size) * 1.15);
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.8);
+}
+
+.image-trail-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}

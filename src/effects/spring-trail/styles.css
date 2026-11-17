@@ -1,0 +1,6 @@
+.spring-trail-canvas {
+  background:
+    radial-gradient(circle at 50% 55%, rgba(88, 110, 255, 0.09), transparent 62%),
+    #06070a;
+  cursor: crosshair;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "mouse-effects-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A curated lab of mouse interaction effects reconstructed from open-source projects.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc -b --pretty false",
+    "cases:videos": "node scripts/capture-cases.cjs"
+  },
+  "dependencies": {
+    "ba-click-fx": "^1.3.15",
+    "gsap": "^3.13.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "^0.179.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@types/three": "^0.179.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "playwright": "^1.65.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
+  },
+  "license": "MIT"
+}

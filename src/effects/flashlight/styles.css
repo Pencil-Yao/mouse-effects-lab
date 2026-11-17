@@ -1,0 +1,87 @@
+.flashlight-root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: none;
+  background: #06070a;
+}
+
+.flashlight-scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.flashlight-scene img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+.flashlight-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 7, 10, 0.35), rgba(6, 7, 10, 0.05) 45%, rgba(6, 7, 10, 0.7));
+}
+
+.flashlight-copy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 420px;
+  padding: 0 24px;
+}
+
+.flashlight-copy span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.flashlight-copy h4 {
+  margin: 10px 0 12px;
+  font-size: clamp(34px, 6vw, 64px);
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: #fff;
+  text-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
+}
+
+.flashlight-copy p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.flashlight-overlay {
+  --fl-x: 50%;
+  --fl-y: 50%;
+  --fl-r: 170px;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(3, 4, 8, 0.93);
+  transition: background 0.2s;
+  -webkit-mask-image: radial-gradient(
+    circle var(--fl-r) at var(--fl-x) var(--fl-y),
+    transparent 0,
+    transparent calc(var(--fl-r) - 1px),
+    #000 var(--fl-r)
+  );
+  mask-image: radial-gradient(
+    circle var(--fl-r) at var(--fl-x) var(--fl-y),
+    transparent 0,
+    transparent calc(var(--fl-r) - 1px),
+    #000 var(--fl-r)
+  );
+}

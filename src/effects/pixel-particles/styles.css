@@ -1,0 +1,6 @@
+.pixel-particles-canvas {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 214, 92, 0.07), transparent 55%),
+    #050608;
+  cursor: crosshair;
+}
