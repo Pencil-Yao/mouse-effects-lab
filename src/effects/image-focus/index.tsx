@@ -13,7 +13,7 @@ interface ImageFocusSettings {
   size: number
 }
 
-const IMAGES = ['/art/trail/33.jpg', '/art/trail/34.jpg', '/art/trail/35.jpg']
+const IMAGES = ['art/trail/33.jpg', 'art/trail/34.jpg', 'art/trail/35.jpg']
 
 export default function ImageFocus({ settings }: EffectProps) {
   const rootRef = useRef<HTMLDivElement>(null)
