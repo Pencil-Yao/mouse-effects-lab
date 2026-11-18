@@ -1,0 +1,177 @@
+.ifx-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: #f4f5f7;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(120, 220, 200, 0.12), transparent 52%),
+    #05070a;
+  --ifx-media-size: 340px;
+}
+
+.ifx-layout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 26px;
+  text-align: center;
+}
+
+.ifx-kicker {
+  font: 10px/1.2 ui-monospace, monospace;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6f7a90;
+}
+
+.ifx-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.ifx-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 6px;
+  aspect-ratio: 1 / 0.82;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
+    rgba(12, 15, 24, 0.7);
+  color: #eef1f7;
+  font: 600 14px/1.1 Inter, 'Helvetica Neue', system-ui, sans-serif;
+  text-align: left;
+  cursor: none;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.ifx-tile:hover {
+  border-color: rgba(124, 156, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.ifx-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.62;
+  transition: opacity 0.25s;
+}
+
+.ifx-tile:hover img {
+  opacity: 0.85;
+}
+
+.ifx-tile-label {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+.ifx-tile-kicker {
+  position: relative;
+  z-index: 1;
+  font: 10px/1 ui-monospace, monospace;
+  letter-spacing: 0.16em;
+  color: #aab6cc;
+}
+
+.ifx-hint {
+  font: 10px/1.4 ui-monospace, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f7a90;
+}
+
+/* ---------- Vendored Cuberto Mouse Follower cursor (MIT) ---------- */
+.ifx-stage .mf-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  direction: ltr;
+  contain: layout style size;
+  pointer-events: none;
+  color: #f4f5f7;
+  transition: opacity 0.3s, color 0.4s;
+}
+
+.ifx-stage .mf-cursor::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  display: block;
+  width: 48px;
+  height: 48px;
+  transform: scale(0.2);
+  background: currentColor;
+  border-radius: 50%;
+  transition: transform 0.25s ease-in-out, opacity 0.1s;
+}
+
+.ifx-stage .mf-cursor.-pointer::before {
+  transform: scale(0.15);
+}
+
+.ifx-stage .mf-cursor.-hidden::before {
+  transform: scale(0);
+}
+
+.ifx-stage .mf-cursor-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ifx-stage .mf-cursor-media {
+  position: absolute;
+  width: var(--ifx-media-size);
+  height: var(--ifx-media-size);
+  margin: calc(var(--ifx-media-size) * -0.5) 0 0 calc(var(--ifx-media-size) * -0.5);
+}
+
+.ifx-stage .mf-cursor-media img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ifx-stage .mf-cursor-media-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 1px;
+  opacity: 0;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.35s, opacity 0.2s 0.2s;
+}
+
+.ifx-stage .mf-cursor.-media .mf-cursor-media-box {
+  opacity: 1;
+  transform: scale(0.696);
+  transition-duration: 0.4s, 0.4s;
+  transition-delay: 0s, 0s;
+}

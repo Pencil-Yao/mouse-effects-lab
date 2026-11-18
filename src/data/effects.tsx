@@ -25,6 +25,7 @@ import MistCloud from '../effects/mist-cloud'
 import CodeTrail from '../effects/code-trail'
 import FishSchool from '../effects/fish-school'
 import Radar from '../effects/radar'
+import ImageFocus from '../effects/image-focus'
 
 
 
@@ -1274,6 +1275,48 @@ export const effects: EffectMeta[] = [
         'Original sweep, beam and pulse click logic is kept; the themed cursor and global native-cursor hiding are disabled, so no runtime control panel is exposed.',
     },
     component: Radar,
+  },
+
+  {
+    id: 'image-focus',
+    index: '26',
+    title: 'Image Focus',
+    tagline: 'The hovered photograph is cloned into a circular media cursor.',
+    category: 'Spotlight & Lens',
+    tech: 'GSAP + DOM',
+    hint: 'Move · hover a frame',
+    defaults: {
+      speed: 0.55,
+      size: 340,
+    },
+    groups: [
+      {
+        title: 'Follower',
+        controls: [
+          { kind: 'slider', key: 'speed', label: 'Follow speed', min: 0.15, max: 1.2, step: 0.05 },
+        ],
+      },
+      {
+        title: 'Media',
+        controls: [
+          { kind: 'slider', key: 'size', label: 'Media size', min: 160, max: 420, step: 10, unit: 'px' },
+        ],
+      },
+    ],
+    source: {
+      project: 'Cuberto Mouse Follower',
+      projectUrl: 'https://github.com/Cuberto/mouse-follower',
+      originalPath: 'src/index.js, src/scss/index.scss',
+      license: 'MIT',
+      licenseNote:
+        'Vendored into the repository and scoped to the card; pointer coordinates are translated into stage-local space.',
+      tech: ['GSAP quickSetter', 'media cache', 'data-cursor-img', 'CSS scale transitions'],
+      principle:
+        'Hovered tiles expose `data-cursor-img`. The follower loads the URL into a cached `Image`, mounts it in the media box, then opens the `-media` state which scales the 0.696 circle into view with a delayed opacity transition.',
+      reconstruction:
+        'The original GSAP quickSetter loop, state classes and data-cursor delegation are preserved. A `local` flag offsets pointer coordinates by the card stage rect, the stylesheet is scoped under `.ifx-stage`, and `destroy()` still tears down listeners, ticker and DOM.',
+    },
+    component: ImageFocus,
   },
 
 ]

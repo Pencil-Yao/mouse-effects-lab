@@ -40,10 +40,16 @@ const IDS = [
   'mist-cloud',
   'fish-school',
   'radar',
+  'image-focus',
 ]
 
 const CLICK_IDS = new Set(['click-burst', 'fire-trail', 'ba-click'])
 const CURSORKIT_CLICK_IDS = new Set(['ice-crystal', 'mist-cloud', 'code-trail', 'fish-school', 'radar'])
+
+// Per-case pointer speed multipliers for the recording only.
+const SPEED_SCALE = {
+  'image-focus': 0.5,
+}
 
 const CONTROL_STEPS = {
   'fluid-cursor': [
@@ -182,6 +188,15 @@ html, body {
   width: 100% !important;
   height: 100% !important;
 }
+${id === 'image-focus' ? `
+.card#image-focus .ifx-grid {
+  max-width: 1040px !important;
+  gap: 24px !important;
+}
+.card#image-focus .ifx-stage {
+  --ifx-media-size: 680px !important;
+}
+` : ''}
 .capture-intro {
   position: fixed;
   inset: 0;
@@ -329,7 +344,7 @@ async function moveCurve(page, from, to, control, duration) {
 }
 
 async function randomPointerDemo(page, id, rect, random, until, controlSteps) {
-  const speed = rect.w * 2.9
+  const speed = rect.w * 2.9 * (SPEED_SCALE[id] ?? 1)
   const point = () => ({
     x: rect.x + rect.w * (0.03 + random() * 0.94),
     y: rect.y + rect.h * (0.03 + random() * 0.94),
@@ -394,6 +409,42 @@ async function randomPointerDemo(page, id, rect, random, until, controlSteps) {
     }
     stepIndex++
     await sleep(120)
+  }
+}
+
+async function imageFocusDemo(page, rect, until) {
+  const centers = await page.evaluate(() => {
+    const stage = document.querySelector('.stage').getBoundingClientRect()
+    return [...document.querySelectorAll('.ifx-tile')].map((el) => {
+      const r = el.getBoundingClientRect()
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 }
+    })
+  })
+  if (centers.length < 3) return randomPointerDemo(page, 'image-focus', rect, mulberry32(7), until, [])
+
+  await page.mouse.move(centers[0].x, centers[0].y)
+  const t0 = Date.now()
+  let index = 0
+  let direction = 1
+  await sleep(1000)
+  while (Date.now() - t0 < until) {
+    let next = index + direction
+    if (next > 2) {
+      direction = -1
+      next = 1
+    } else if (next < 0) {
+      direction = 1
+      next = 1
+    }
+    await moveCurve(
+      page,
+      centers[index],
+      centers[next],
+      { x: (centers[index].x + centers[next].x) / 2, y: (centers[index].y + centers[next].y) / 2 },
+      450,
+    )
+    index = next
+    await sleep(1000)
   }
 }
 
@@ -586,14 +637,18 @@ async function demoCase(browser, id) {
   await sleep(1350)
   await fadeIntro(page)
   const rect = await stageRect(page)
-  await randomPointerDemo(
-    page,
-    id,
-    rect,
-    random,
-    9250,
-    CONTROL_STEPS[id] || [],
-  )
+  if (id === 'image-focus') {
+    await imageFocusDemo(page, rect, 9250)
+  } else {
+    await randomPointerDemo(
+      page,
+      id,
+      rect,
+      random,
+      9250,
+      CONTROL_STEPS[id] || [],
+    )
+  }
   const tail = 10400 - (Date.now() - t0)
   if (tail > 0) await sleep(tail)
 
