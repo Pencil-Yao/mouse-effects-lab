@@ -38,16 +38,20 @@ export class MagneticEngine {
   }
 
   private measure() {
+    const rootRect = this.root.getBoundingClientRect()
     this.entries = Array.from(this.root.querySelectorAll<HTMLElement>('.magnetic-item')).map(
-      (el) => ({
-        el,
-        baseX: el.offsetLeft + el.offsetWidth / 2,
-        baseY: el.offsetTop + el.offsetHeight / 2,
-        targetX: 0,
-        targetY: 0,
-        x: 0,
-        y: 0,
-      }),
+      (el) => {
+        const rect = el.getBoundingClientRect()
+        return {
+          el,
+          baseX: rect.left - rootRect.left + rect.width / 2,
+          baseY: rect.top - rootRect.top + rect.height / 2,
+          targetX: 0,
+          targetY: 0,
+          x: 0,
+          y: 0,
+        }
+      },
     )
   }
 

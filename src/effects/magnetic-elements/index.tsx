@@ -4,7 +4,7 @@ import { useLatest } from '../../hooks/useLatest'
 import { MagneticEngine, type MagneticSettings } from './engine'
 import './styles.css'
 
-const TILES = ['01', '02', '03', '04', '05', '06']
+const TILES = Array.from({ length: 32 }, (_, i) => String(i + 1).padStart(2, '0'))
 
 export default function MagneticElements({ settings }: EffectProps) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -20,12 +20,14 @@ export default function MagneticElements({ settings }: EffectProps) {
   return (
     <div className="magnetic-root" ref={rootRef}>
       <div className="magnetic-ring" aria-hidden="true" />
-      {TILES.map((tile) => (
-        <button className="magnetic-item" key={tile}>
-          <span className="magnetic-dot" />
-          <span className="magnetic-label">{tile}</span>
-        </button>
-      ))}
+      <div className="magnetic-grid">
+        {TILES.map((tile) => (
+          <button className="magnetic-item" key={tile}>
+            <span className="magnetic-dot" />
+            <span className="magnetic-label">{tile}</span>
+          </button>
+        ))}
+      </div>
       <p className="magnetic-caption">move between the tiles</p>
     </div>
   )

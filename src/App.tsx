@@ -116,17 +116,17 @@ export default function App() {
           </h1>
           <p>
             A hands-on laboratory of cursor trails, particle systems, image residue, magnetic
-            interfaces, fluid solvers and liquid shaders. Thirteen open-source projects were scanned,
-            their implementations traced, and twenty effects reconstructed as independent,
+            interfaces, fluid solvers and liquid shaders. Fourteen open-source projects were scanned,
+            their implementations traced, and twenty-five effects reconstructed as independent,
             controllable demos. Every source viewer shows the code that is actually running.
           </p>
           <div className="hero-stats">
             <div className="stat">
-              <b>13</b>
+              <b>14</b>
               <span>repos scanned</span>
             </div>
             <div className="stat">
-              <b>20</b>
+              <b>25</b>
               <span>live effects</span>
             </div>
             <div className="stat">

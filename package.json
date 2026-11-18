@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc -b --pretty false",
-    "cases:videos": "node scripts/capture-cases.cjs"
+    "cases:videos": "node scripts/capture-cases-1080.cjs"
   },
   "dependencies": {
     "ba-click-fx": "^1.3.15",

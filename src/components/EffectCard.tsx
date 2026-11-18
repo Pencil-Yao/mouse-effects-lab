@@ -40,13 +40,15 @@ export default function EffectCard({
           </div>
         </div>
         <div className="card-actions">
-          <button
-            className={`icon-btn ${controlsOpen ? 'active' : ''}`}
-            onClick={() => setControlsOpen((v) => !v)}
-            aria-expanded={controlsOpen}
-          >
-            Controls
-          </button>
+          {effect.groups.length > 0 && (
+            <button
+              className={`icon-btn ${controlsOpen ? 'active' : ''}`}
+              onClick={() => setControlsOpen((v) => !v)}
+              aria-expanded={controlsOpen}
+            >
+              Controls
+            </button>
+          )}
           <button
             className="icon-btn"
             onClick={onReset}
@@ -68,12 +70,14 @@ export default function EffectCard({
         </div>
       </div>
 
-      <ControlPanel
-        groups={effect.groups}
-        settings={settings}
-        open={controlsOpen}
-        onChange={onSettingChange}
-      />
+      {effect.groups.length > 0 && (
+        <ControlPanel
+          groups={effect.groups}
+          settings={settings}
+          open={controlsOpen}
+          onChange={onSettingChange}
+        />
+      )}
     </article>
   )
 }

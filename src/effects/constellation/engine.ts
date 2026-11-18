@@ -146,7 +146,7 @@ export class ConstellationEngine {
         if (dc < s.cursorDist) {
           ctx.beginPath()
           ctx.strokeStyle = `rgba(92,244,252,${(1 - dc / s.cursorDist) * 0.75})`
-          ctx.lineWidth = 1
+          ctx.lineWidth = 2
           ctx.moveTo(a.x, a.y)
           ctx.lineTo(this.pointer.x, this.pointer.y)
           ctx.stroke()

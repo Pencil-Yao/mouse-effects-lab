@@ -1,0 +1,9 @@
+.cursorkit-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.radar-stage {
+  background: radial-gradient(circle at 50% 50%, rgba(30, 120, 110, 0.12), transparent 60%), #04080a;
+}

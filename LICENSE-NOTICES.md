@@ -14,6 +14,7 @@ table below records exactly how each source was used.
 | [image-trail](https://github.com/sebastianvasquezechavarria1234/image-trail) | MIT | Adapted: eight image-trail variants and distance-threshold spawner |
 | [CursorX-Interactive-Cursor-Effects](https://github.com/Felix-au/CursorX-Interactive-Cursor-Effects) | MIT | Adapted: Morphing Blob, Fire Trail and Constellation cursor effects |
 | [ba-click-fx](https://github.com/CialloKing/ba-click-fx) | MIT | Used as the published npm dependency `ba-click-fx` (v1.3.15); runtime not vendored |
+| [CursorKit](https://github.com/PC2005-cloud/cursorkit) | MIT | Adapted: ice crystal, mist cloud, code trail, fish school and radar cursor effects |
 | [Cursor-Trial-Effect](https://github.com/amantha6/Cursor-Trial-Effect) | **No license file** | Behavioural reference only. Rewritten from scratch; no source code copied. |
 | [mouse-effects](https://github.com/cortiz2894/mouse-effects) | **No license file** | Behavioural reference only. Water ripple, mask reveal and image-follow were rewritten from scratch; no source code copied. |
 | [interactive-particles](https://github.com/brunoimbrizi/interactive-particles) | Custom Codrops license | **Not copied.** Its README forbids redistribution as-is. The same technique is represented through the MIT a-reactive-particle-system project. |
@@ -35,6 +36,7 @@ Copyright (c) 2026 Shahroz Adnan — webgl-fluid-cursor
 Copyright (c) 2026 Sebastian Vasquez — image-trail
 Copyright (c) 2026 Felix Au — CursorX-Interactive-Cursor-Effects
 Copyright (c) 2026 CialloKing — ba-click-fx
+Copyright (c) 2026 PC2005-cloud — CursorKit
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
